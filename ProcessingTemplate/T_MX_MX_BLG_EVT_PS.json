@@ -2,7 +2,6 @@
   "description": "batch of feeders for Brazil local GAAP - events",
   "folder": "MX_EOD",
   "node": "LINUX",
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

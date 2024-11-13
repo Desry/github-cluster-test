@@ -4,7 +4,6 @@
   "highRiskStatisticMethod": "PERCENT",
   "highRiskStatisticPeriod": "WEEK",
   "highRiskThreshold": 5,
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "WORKFLOW",
   "statisticMethod": "AVERAGE",

@@ -2,7 +2,6 @@
   "description": "MRL view for RMH limit monitoring - South America",
   "folder": "MX_EOD",
   "node": "LINUX",
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

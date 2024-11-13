@@ -2,7 +2,6 @@
   "description": "gather statistics for BD_CM_FUTCL_PS_SA",
   "folder": "MX_EOD",
   "node": "LINUX",
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

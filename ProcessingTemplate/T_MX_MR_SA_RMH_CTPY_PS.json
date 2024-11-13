@@ -2,7 +2,6 @@
   "description": "Daily Risk EOD Reports - MRL_SA_EOD_RMH_CTPY",
   "folder": "MX_EOD",
   "node": "LINUX",
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

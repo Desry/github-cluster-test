@@ -1,7 +1,6 @@
 {
   "description": "14000|Broad Disclosure reports SA",
   "folder": "MX_EOD",
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "WORKFLOW",
   "tags": 

@@ -2,7 +2,6 @@
   "description": "BDT - Cashflow commodity for SA region - rename",
   "folder": "MX_EOD",
   "node": "LINUX",
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

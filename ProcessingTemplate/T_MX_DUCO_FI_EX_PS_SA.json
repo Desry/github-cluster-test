@@ -2,7 +2,6 @@
   "description": "MX to DUCO DFA 43 Rec for SOUTH AMERICA - FI",
   "folder": "MX_EOD",
   "node": "LINUX",
-  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",
