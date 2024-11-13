@@ -2,6 +2,7 @@
   "description": "extract for MRL view for RMH limit monitoring - SA",
   "folder": "MX_EOD",
   "node": "LINUX",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

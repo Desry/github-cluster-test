@@ -2,6 +2,7 @@
   "description": "MX to BOA - Commodity Delta extract file rename - SA entity",
   "folder": "MX_EOD",
   "node": "LINUX",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

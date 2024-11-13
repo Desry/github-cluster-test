@@ -1,6 +1,7 @@
 {
   "description": "40000|Finish of EOD for North America",
   "folder": "MX_MONITOR",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "WORKFLOW",
   "tags": 

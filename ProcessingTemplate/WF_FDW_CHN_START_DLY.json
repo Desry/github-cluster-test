@@ -1,5 +1,6 @@
 {
   "description": "FDW CHN Start Daily",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "WORKFLOW",
   "tags": 

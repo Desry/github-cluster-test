@@ -2,6 +2,7 @@
   "description": "Feeder for SPIDER_CommodDelta01 South America",
   "folder": "MX_EOD",
   "node": "LINUX",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

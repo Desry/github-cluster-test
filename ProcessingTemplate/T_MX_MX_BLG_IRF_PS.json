@@ -2,6 +2,7 @@
   "description": "batch of feeders for Brazil local GAAP - interest rate fixing",
   "folder": "MX_EOD",
   "node": "LINUX",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "TASK",
   "serverNodeType": "LINUX",

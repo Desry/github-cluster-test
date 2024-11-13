@@ -1,6 +1,7 @@
 {
   "description": "14999|BD Accounting EOD SA",
   "folder": "MX_EOD",
+  "owner": "Administrator",
   "priority": "0",
   "processingType": "WORKFLOW",
   "tags": 
