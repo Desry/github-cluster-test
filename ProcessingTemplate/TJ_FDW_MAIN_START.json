@@ -1,0 +1,14 @@
+{
+  "description": "FDW Main Start",
+  "node": "LINUX",
+  "owner": "des_user",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo ${loadDate}"
+  }
+}

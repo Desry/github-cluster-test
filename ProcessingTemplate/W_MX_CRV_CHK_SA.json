@@ -1,0 +1,398 @@
+{
+  "description": "14000|Curve calibration check SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_MARKETDATA_EXPORT_SA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_MARKETDATA_EXPORT_SA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_CRV_CHK_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_CHK_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_CHK_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_CRV_HAID_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_HAID_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_HAID_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_PC1_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PC1_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PC1_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_PC2_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PC2_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PC2_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_PC3_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PC3_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PC3_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_PRC_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_PRC_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_PRC_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_RISK1ZAC_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK1ZAC_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK1ZAC_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_RISK1_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK1_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK1_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_RISK2_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK2_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK2_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_CHK_REPORT_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_CHK_REPORT_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_CHK_REPORT_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_HAID_PS_SA",
+          "predecessor": "T_MX_CRV_HAID_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PC1_PS_SA",
+          "predecessor": "T_MX_CRV_PC1_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PC2_PS_SA",
+          "predecessor": "T_MX_CRV_PC2_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PC3_PS_SA",
+          "predecessor": "T_MX_CRV_PC3_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_PRC_PS_SA",
+          "predecessor": "T_MX_CRV_PRC_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK1_PS_SA",
+          "predecessor": "T_MX_CRV_RISK1_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK1ZAC_PS_SA",
+          "predecessor": "T_MX_CRV_RISK1ZAC_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK2_PS_SA",
+          "predecessor": "T_MX_CRV_RISK2_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_RISK_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_RISK_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_RISK_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_SA_HEADER",
+          "predecessor": "T_MX_CRV_CHK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_RISK_PS_SA",
+          "predecessor": "T_MX_CRV_RISK_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TS_CRV_RISK_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_TS_CRV_RISK_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_TS_CRV_RISK_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CRV_CHK_REPORT_SA",
+          "predecessor": "T_MX_CRV_CHK_REPORT_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_SA",
+          "predecessor": "T_MX_GATHER_STATS_CRV_CHK_RISK_REP_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CRV_CHK_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_CRV_CHK_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CRV_CHK_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TS_CRV_RISK_PS_SA",
+          "predecessor": "T_MX_TS_CRV_RISK_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

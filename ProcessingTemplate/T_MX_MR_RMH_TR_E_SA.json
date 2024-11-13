@@ -1,0 +1,18 @@
+{
+  "description": "extract for MRL view for RMH limit monitoring - SA",
+  "folder": "MX_EOD",
+  "node": "LINUX",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"hello\""
+  }
+}

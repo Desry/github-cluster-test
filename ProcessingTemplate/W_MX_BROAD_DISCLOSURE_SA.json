@@ -1,0 +1,69 @@
+{
+  "description": "14000|Broad Disclosure reports SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_CLOSEDOWN_SA.T_MX_CLOSEDOWN_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_CLOSEDOWN_SA",
+      "workflowTemplateItem": "T_MX_CLOSEDOWN_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_FX_CLOS_PRICE_AND_PTAX_SA.T_MX_FX_CLOS_PRICE_AND_PTAX_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_FX_CLOS_PRICE_AND_PTAX_SA",
+      "workflowTemplateItem": "T_MX_FX_CLOS_PRICE_AND_PTAX_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "W_MX_BROAD_DISCLOSURE_SA_SUB_1",
+      "processingTemplate": "W_MX_BROAD_DISCLOSURE_SA_SUB_1",
+      "processingType": "WORKFLOW",
+      "title": "W_MX_BROAD_DISCLOSURE_SA_SUB_1",
+      "workflowType": "STANDARD"
+    },
+    {
+      "name": "W_MX_BROAD_DISCLOSURE_SA_SUB_2",
+      "processingTemplate": "W_MX_BROAD_DISCLOSURE_SA_SUB_2",
+      "processingType": "WORKFLOW",
+      "title": "W_MX_BROAD_DISCLOSURE_SA_SUB_2",
+      "workflowType": "STANDARD",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "W_MX_BROAD_DISCLOSURE_SA_SUB_1",
+          "predecessor": "W_MX_BROAD_DISCLOSURE_SA_SUB_1",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

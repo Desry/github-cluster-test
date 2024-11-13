@@ -1,0 +1,19 @@
+{
+  "description": "Check if a SPF_SPB Holiday (exit 4) or BAU (exit 3)",
+  "folder": "MX_EOD",
+  "node": "LINUX",
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"hello\""
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "description": "14999|Simulation Calculate and Store South America",
+  "folder": "MX_EOD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "owner": "desry.hernalin",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_CLOSEDOWN_SA.T_MX_CLOSEDOWN_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_CLOSEDOWN_SA",
+      "workflowTemplateItem": "T_MX_CLOSEDOWN_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SIMUL_CALC_STORE_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SIMUL_CALC_STORE_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SIMUL_CALC_STORE_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_FXC_DET_PL_FEED_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_FXC_DET_PL_FEED_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FXC_DET_PL_FEED_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SIMUL_CALC_STORE_SA_HEADER",
+          "predecessor": "T_MX_SIMUL_CALC_STORE_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_FXCASH_PL_FEED_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_FXCASH_PL_FEED_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FXCASH_PL_FEED_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FXC_DET_PL_FEED_SA",
+          "parent": "9e8f7697-fbaf-41da-87b6-ad2ad59a5662",
+          "predecessor": "T_MX_FXC_DET_PL_FEED_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FXC_DET_PL_FEED_SA",
+          "parent": "9e8f7697-fbaf-41da-87b6-ad2ad59a5662",
+          "predecessor": "T_MX_FXC_DET_PL_FEED_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "9e8f7697-fbaf-41da-87b6-ad2ad59a5662",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_DMT_MTM_PL_SIM_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_MTM_PL_SIM_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_MTM_PL_SIM_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FXCASH_PL_FEED_SA",
+          "parent": "26c50923-1533-4e63-a756-b4f579bed2c5",
+          "predecessor": "T_MX_FXCASH_PL_FEED_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FXCASH_PL_FEED_SA",
+          "parent": "26c50923-1533-4e63-a756-b4f579bed2c5",
+          "predecessor": "T_MX_FXCASH_PL_FEED_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "26c50923-1533-4e63-a756-b4f579bed2c5",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_DMT_MTM_PL_SIM_C_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_MTM_PL_SIM_C_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_MTM_PL_SIM_C_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_SIM_SA",
+          "parent": "c48fa279-4078-434a-9d30-30bba85fe349",
+          "predecessor": "T_MX_DMT_MTM_PL_SIM_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_SIM_SA",
+          "parent": "c48fa279-4078-434a-9d30-30bba85fe349",
+          "predecessor": "T_MX_DMT_MTM_PL_SIM_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "c48fa279-4078-434a-9d30-30bba85fe349",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_DMT_MTM_PL_FO_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_MTM_PL_FO_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DMT_MTM_PL_FO_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_SIM_C_SA",
+          "parent": "1e6767f7-8783-493f-864a-d98cad4341f1",
+          "predecessor": "T_MX_DMT_MTM_PL_SIM_C_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_SIM_C_SA",
+          "parent": "1e6767f7-8783-493f-864a-d98cad4341f1",
+          "predecessor": "T_MX_DMT_MTM_PL_SIM_C_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "1e6767f7-8783-493f-864a-d98cad4341f1",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SIMUL_CALC_STORE_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SIMUL_CALC_STORE_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SIMUL_CALC_STORE_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_FO_SA",
+          "parent": "bc963cc0-cdc7-45a9-9ec6-2f8739adeb4a",
+          "predecessor": "T_MX_DMT_MTM_PL_FO_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_FO_SA",
+          "parent": "bc963cc0-cdc7-45a9-9ec6-2f8739adeb4a",
+          "predecessor": "T_MX_DMT_MTM_PL_FO_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "bc963cc0-cdc7-45a9-9ec6-2f8739adeb4a",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

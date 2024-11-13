@@ -1,0 +1,19 @@
+{
+  "description": "MX to DUCO DFA 43 Rec feeder for SA region",
+  "folder": "MX_EOD",
+  "node": "LINUX",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"hello\""
+  }
+}

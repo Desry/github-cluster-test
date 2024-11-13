@@ -1,0 +1,26 @@
+{
+  "description": "check status in ResultsSoutham.csv",
+  "folder": "MX_EOD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "LINUX",
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "modified_nodes",
+    "no_script"
+  ],
+  "taskType": "POWERSHELL",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "exit 1\nsleep 1"
+  }
+}

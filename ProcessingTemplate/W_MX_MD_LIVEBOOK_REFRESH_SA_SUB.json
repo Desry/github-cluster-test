@@ -1,0 +1,75 @@
+{
+  "description": "14000|Livebook Refresh SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_MARKETDATA_IMPORT_SA.T_MX_MARKETDATA_IMPORT_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_MARKETDATA_IMPORT_SA",
+      "workflowTemplateItem": "T_MX_MARKETDATA_IMPORT_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_LB_MDREFRESH_FULLREV_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LB_MDREFRESH_FULLREV_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_LB_MDREFRESH_FULLREV_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_LB_MDREFRESH_STOCK_SA_SLEEP5",
+      "priority": "0",
+      "processingTemplate": "T_MX_LB_MDREFRESH_STOCK_SA_SLEEP5",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_LB_MDREFRESH_STOCK_SA_SLEEP5",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_LB_MDREFRESH_STOCK_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LB_MDREFRESH_STOCK_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_LB_MDREFRESH_STOCK_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LB_MDREFRESH_STOCK_SA_SLEEP5",
+          "predecessor": "T_MX_LB_MDREFRESH_STOCK_SA_SLEEP5",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

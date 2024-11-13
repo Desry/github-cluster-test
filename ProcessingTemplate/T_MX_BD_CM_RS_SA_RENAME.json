@@ -1,0 +1,18 @@
+{
+  "description": "BD File with trade and settlement details COM SA - rename",
+  "folder": "MX_EOD",
+  "node": "LINUX",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"hello\""
+  }
+}

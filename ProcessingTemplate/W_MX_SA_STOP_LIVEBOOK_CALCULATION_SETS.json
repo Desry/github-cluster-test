@@ -1,0 +1,253 @@
+{
+  "description": "14000|Livebook stop South America",
+  "folder": "MX_EOD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_HEADER",
+      "weight": "1"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_SA1",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_SA1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_SA1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_HEADER",
+          "predecessor": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_PC_FLASH",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_PC_FLASH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_PC_FLASH",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_SA1",
+          "predecessor": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_SA1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_PC_FLASH",
+          "predecessor": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_PC_FLASH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC3",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC3",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+          "predecessor": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC3",
+          "predecessor": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+          "predecessor": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_SA1",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_SA1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_SA1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA",
+          "predecessor": "T_MX_SA_ANT_STOPLB_IRD_FULLREVAL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_SA_STOP_LIVEBOOK_CALCULATION_SETS_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_SA1",
+          "predecessor": "T_MX_SA_ANT_STOPLB_IRD_RBPL_STOCK_SA_SA1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

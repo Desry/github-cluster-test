@@ -1,0 +1,52 @@
+{
+  "lazyLoad": true,
+  "owner": "des_user",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "wait_2s",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "wait_2s",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "WAIT",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "WFW_WITH_3S_WAIT_TASK.wait_3s",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "WAIT",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "WFW_WITH_3S_WAIT_TASK",
+      "workflowTemplateItem": "wait_3s"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "wait_1",
+      "processingTemplate": "wait_1",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "WAIT"
+    }
+  ]
+}

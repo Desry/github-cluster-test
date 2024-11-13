@@ -1,0 +1,225 @@
+{
+  "description": "FDW CHN Start Daily",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "DLY"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "CHRONOLOGY",
+      "name": "CHRONOLOGY",
+      "processingStatus": "COMPLETED",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "WF_FDW_ALL_STAT_DLY",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "WF_FDW_ALL_STAT_DLY",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "WF_FDW_CHN_ALL_DLY.TJ_FDW_MAIN_START",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "WF_FDW_CHN_ALL_DLY",
+      "workflowTemplateItem": "TJ_FDW_MAIN_START"
+    }
+  ],
+  "designParameters": 
+  [
+    {
+      "defaultValue": "DLY",
+      "editorType": "TEXT",
+      "name": "OCCURRENCE",
+      "required": true,
+      "title": "Occurrence of this workflow (DLY, CLC etc.,)"
+    },
+    {
+      "defaultValue": "CHN",
+      "editorType": "TEXT",
+      "name": "REGION",
+      "required": true,
+      "title": "REGION for which this workflow has to run"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "TJ_FDW_CHN_SET_IDY_OFF",
+      "processingTemplate": "TJ_FDW_CHN_SET_IDY_OFF",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "SET_VARIABLE_VALUE",
+      "title": "JO_FDW_CHN_SET_IDY_OFF_DLY"
+    },
+    {
+      "name": "TJ_FDW_CHN_SET_RPG_SBX_OFF",
+      "processingTemplate": "TJ_FDW_CHN_SET_RPG_SBX_OFF",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "SET_VARIABLE_VALUE",
+      "title": "JO_FDW_CHN_SET_RPG_SBX_OFF_DLY"
+    },
+    {
+      "name": "TJ_SPT_CHN_SET_LOAD_DM_IDY_OFF",
+      "processingTemplate": "TJ_SPT_CHN_SET_LOAD_DM_IDY_OFF",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "SET_VARIABLE_VALUE",
+      "title": "JO_SPT_CHN_SET_LOAD_DM_IDY_OFF_DLY"
+    },
+    {
+      "name": "TJ_FDW_IDY_BATCH_FINISH",
+      "passBy": true,
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_IDY_BATCH_FINISH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_IDY_BATCH_FINISH_DLY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_CHN_SET_IDY_OFF",
+          "predecessor": "TJ_FDW_CHN_SET_IDY_OFF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "INTERNAL",
+          "taskType": "SET_VARIABLE_VALUE"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_CHN_SET_RPG_SBX_OFF",
+          "predecessor": "TJ_FDW_CHN_SET_RPG_SBX_OFF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "INTERNAL",
+          "taskType": "SET_VARIABLE_VALUE"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_SPT_CHN_SET_LOAD_DM_IDY_OFF",
+          "predecessor": "TJ_SPT_CHN_SET_LOAD_DM_IDY_OFF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "INTERNAL",
+          "taskType": "SET_VARIABLE_VALUE"
+        }
+      ]
+    },
+    {
+      "name": "TJ_FDW_BATCH_START",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_BATCH_START",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_BATCH_START_DLY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_IDY_BATCH_FINISH",
+          "predecessor": "TJ_FDW_IDY_BATCH_FINISH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "WF_FDW_CHN_IDY_CLC",
+          "parent": "a89312ad-4da3-4d63-84bc-ec7373db7f6b",
+          "processingStatus": "EXECUTING",
+          "processingTemplate": "WF_FDW_CHN_IDY_CLC",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "ANY",
+          "workflowType": "CYCLE"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "WF_GLS_CHN_GEN_BEGIN_DLY.TJ_GLS_APP_ENGINE.1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "PEOPLESOFT",
+          "taskType": "PEOPLESOFT_APPLICATION_ENGINE_TASK",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "WF_GLS_CHN_GEN_BEGIN_DLY",
+          "workflowTemplateItem": "TJ_GLS_APP_ENGINE.1"
+        },
+        {
+          "dependencyType": "NOR",
+          "groupId": "a89312ad-4da3-4d63-84bc-ec7373db7f6b",
+          "name": "NOR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "TJ_FDW_VALID_OBJECTS",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_VALID_OBJECTS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_VALID_OBJECTS_DLY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_BATCH_START",
+          "predecessor": "TJ_FDW_BATCH_START",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "TJ_FDW_EOD_INITIALIZE",
+      "priority": "0",
+      "processingTemplate": "TJ_FDW_EOD_INITIALIZE",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "JO_FDW_CHN_EOD_INITIALIZE_DLY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TJ_FDW_VALID_OBJECTS",
+          "predecessor": "TJ_FDW_VALID_OBJECTS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

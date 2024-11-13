@@ -1,0 +1,18 @@
+{
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "wait_task_1",
+      "processingTemplate": "wait_task_1",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "WAIT"
+    }
+  ]
+}

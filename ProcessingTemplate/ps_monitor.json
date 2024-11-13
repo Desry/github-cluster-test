@@ -1,0 +1,16 @@
+{
+  "monitorType": "POWERSHELL_MONITOR",
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "SERVICE",
+  "serverNodeType": "WINDOWS",
+  "serviceType": "MONITOR",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "test\nhello\n",
+    "serviceMode": {
+      "runMode": "ONCE"
+    }
+  }
+}

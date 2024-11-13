@@ -1,0 +1,26 @@
+{
+  "lazyLoad": true,
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "workflowType": "FOR_EACH",
+  "processingCommand": {
+    "forEachCollection": "${RowsREQIT}",
+    "forEachCollectionType": "JSON",
+    "onUnresolvedVariables": "FAIL"
+  },
+  "items": 
+  [
+    {
+      "name": "UpsertREQIT.AnowLicensing.Anow.sql",
+      "processingTemplate": "UpsertREQIT.AnowLicensing.Anow.sql",
+      "processingType": "TASK",
+      "serverNodeType": "MYSQL",
+      "taskType": "RDBMS_SQL_STATEMENT"
+    }
+  ]
+}

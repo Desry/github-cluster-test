@@ -1,0 +1,246 @@
+{
+  "description": "20052|Upload of futures closing prices 18:30 SA",
+  "folder": "MX_EOD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "SA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_BD_FUFXNG_PS",
+      "processingTemplate": "T_MX_BD_FUFXNG_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_BD_FUFXNG_PS"
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_FIX_FU_SA",
+      "processingTemplate": "R_MX_FIX_FU_SA",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_FIX_FU_SA",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_FUFXNG_PS",
+          "predecessor": "T_MX_BD_FUFXNG_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_FIX_FU_SA",
+      "processingTemplate": "T_MX_FIX_FU_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FIX_FU_SA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_FIX_FU_SA",
+          "predecessor": "R_MX_FIX_FU_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_1800SP_FX_FU_FIX",
+      "processingTemplate": "R_MX_1800SP_FX_FU_FIX",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_1800SP_FX_FU_FIX",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FIX_FU_SA",
+          "predecessor": "T_MX_FIX_FU_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_1800SP_FX_FU_FIX",
+      "processingTemplate": "T_MX_1800SP_FX_FU_FIX",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_1800SP_FX_FU_FIX",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_1800SP_FX_FU_FIX",
+          "predecessor": "R_MX_1800SP_FX_FU_FIX",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_FRA_DE_CUPOM_FIX",
+      "processingTemplate": "T_MX_FRA_DE_CUPOM_FIX",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FRA_DE_CUPOM_FIX",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_1800SP_FX_FU_FIX",
+          "predecessor": "T_MX_1800SP_FX_FU_FIX",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_FRP_FIX",
+      "processingTemplate": "T_MX_FRP_FIX",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_FRP_FIX",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FRA_DE_CUPOM_FIX",
+          "predecessor": "T_MX_FRA_DE_CUPOM_FIX",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_DLV_REFRESH_SA_1830",
+      "processingTemplate": "T_MX_DLV_REFRESH_SA_1830",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_DLV_REFRESH_SA_1830",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FRP_FIX",
+          "predecessor": "T_MX_FRP_FIX",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

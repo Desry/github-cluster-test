@@ -1,0 +1,17 @@
+{
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "SUB_WFW_WITH_A_LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG_NAMEEEEEE",
+      "processingTemplate": "SUB_WFW_WITH_A_LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG_NAMEEEEEE",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ]
+}

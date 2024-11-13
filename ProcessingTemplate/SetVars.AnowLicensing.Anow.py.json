@@ -1,0 +1,15 @@
+{
+  "node": "AnowEngine.Linux.apf",
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "taskType": "PYTHON",
+  "processingCommand": {
+    "script": "import datetime\n\ndate_to = datetime.date.today()\ndate_from = date_to - datetime.timedelta(days=180)\n\nprint( \"ANOWVAR:PARENT.DateFrom=\" + date_from.strftime(\"%Y-%m-%d\") )\nprint( \"ANOWVAR:PARENT.DateTo=\" + date_to.strftime(\"%Y-%m-%d\") )"
+  }
+}

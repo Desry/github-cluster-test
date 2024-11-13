@@ -1,0 +1,284 @@
+{
+  "description": "14000|Market data export for validation SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_MARKETDATA_IMPORT_SA.T_MX_MARKETDATA_IMPORT_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_MARKETDATA_IMPORT_SA",
+      "workflowTemplateItem": "T_MX_MARKETDATA_IMPORT_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BONDPRICES_EXPORT_SA_SLEEP10",
+      "priority": "0",
+      "processingTemplate": "T_MX_BONDPRICES_EXPORT_SA_SLEEP10",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BONDPRICES_EXPORT_SA_SLEEP10",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BONDPRICES_EXPORT_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_BONDPRICES_EXPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BONDPRICES_EXPORT_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BONDPRICES_EXPORT_SA_SLEEP10",
+          "predecessor": "T_MX_BONDPRICES_EXPORT_SA_SLEEP10",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FXSPOT_EXPORT_SOUTHAM_SLEEP6",
+      "priority": "0",
+      "processingTemplate": "T_MX_FXSPOT_EXPORT_SOUTHAM_SLEEP6",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FXSPOT_EXPORT_SOUTHAM_SLEEP6",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FXSPOT_EXPORT_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FXSPOT_EXPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FXSPOT_EXPORT_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FXSPOT_EXPORT_SOUTHAM_SLEEP6",
+          "predecessor": "T_MX_FXSPOT_EXPORT_SOUTHAM_SLEEP6",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_HEDGECURVE_EXPORT_SOUTHAM_SLEEP14",
+      "priority": "0",
+      "processingTemplate": "T_MX_HEDGECURVE_EXPORT_SOUTHAM_SLEEP14",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_HEDGECURVE_EXPORT_SOUTHAM_SLEEP14",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_HEDGECURVE_1Y_12M_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_HEDGECURVE_1Y_12M_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_HEDGECURVE_1Y_12M_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_HEDGECURVE_EXPORT_SOUTHAM_SLEEP14",
+          "predecessor": "T_MX_HEDGECURVE_EXPORT_SOUTHAM_SLEEP14",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_HEDGECURVE_ON_1D_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_HEDGECURVE_ON_1D_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_HEDGECURVE_ON_1D_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_HEDGECURVE_1Y_12M_SOUTHAM",
+          "predecessor": "T_MX_HEDGECURVE_1Y_12M_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_REVALUATIONRATECURVE_EXPORT_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_REVALUATIONRATECURVE_EXPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_REVALUATIONRATECURVE_EXPORT_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SECURITYPRICES_EXPORT_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_SECURITYPRICES_EXPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SECURITYPRICES_EXPORT_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TURNS_EXPORT_SOUTHAM_SLEEP12",
+      "priority": "0",
+      "processingTemplate": "T_MX_TURNS_EXPORT_SOUTHAM_SLEEP12",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_TURNS_EXPORT_SOUTHAM_SLEEP12",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_EXPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TURNS_EXPORT_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_TURNS_EXPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_TURNS_EXPORT_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TURNS_EXPORT_SOUTHAM_SLEEP12",
+          "predecessor": "T_MX_TURNS_EXPORT_SOUTHAM_SLEEP12",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

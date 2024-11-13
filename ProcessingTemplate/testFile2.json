@@ -1,0 +1,12 @@
+{
+  "node": "AnowEngine.Linux.apf",
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "taskType": "PYTHON",
+  "workspace": "TaskErrorMonitoring.Anow.ws",
+  "processingCommand": {
+    "script": "import json\n\nobj_name = \"${TaskMonObjName}\"\nsplit_result = obj_name.split('.')\n\nif len(split_result) > 5:\n    print(f'{obj_name} template name doesn\\'t comply with the naming convention, ignoring this task error.')\n    exit(1)\n    \nif '.GBL' in obj_name or '.Gbl' in obj_name:\n  kvs_name = f\"GlobalMetadata.Anow.dskv\"\nelse:\n  uc_name = split_result[-2]\n  kvs_name = f\"Metadata.{uc_name}.dskv\"\n\ngsn_json_string = \"KVS::%s(GSN)\" % (kvs_name)\n\nprint( \"ANOWVAR:PARENT.KVS_NAME=\" + gsn_json_string )"
+  }
+}

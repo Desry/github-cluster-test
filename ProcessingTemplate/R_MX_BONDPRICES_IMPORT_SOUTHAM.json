@@ -1,0 +1,47 @@
+{
+  "description": "Resource for MD file PC_EOD_SOUTHAM_bondprices",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "FMGR",
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "SERVICE",
+  "sensorType": "FILE_SENSOR",
+  "serverNodeType": "FILE_MANAGER",
+  "serviceType": "SENSOR",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "directory": "/appl/murex/app/scripts/MarketData/Received/common",
+    "file": ".*PC_EOD_SOUTHAM_bondprices.*.xml",
+    "fileCharacterSet": "BINARY",
+    "ifNoFilesFound": "FAIL_AFTER_LAST_CHECK",
+    "orderType": "DATE_ASCENDING",
+    "patternMode": "REGEXP",
+    "reactionMode": "FILE_FOUND",
+    "reactionType": "COMPLETE",
+    "serviceMode": {
+      "duration": 1800000,
+      "interval": 30000,
+      "runMode": "FOR"
+    },
+    "sign": true,
+    "skipSystemCheckForBackupDirectory": true,
+    "skipSystemCheckForSourceDirectory": true,
+    "skipSystemCheckForTargetDirectory": true,
+    "skipSystemCheckForTemporaryDirectory": true,
+    "skipSystemCheckForWorkDirectory": true,
+    "sourceFileAction": "SKIP_ARCHIVE",
+    "sourceType": "LOCAL_FILE_SYSTEM",
+    "targetType": "LOCAL_FILE_SYSTEM",
+    "timestampBaseDate": "PROCESSING_TIMESTAMP",
+    "verifySigning": true
+  }
+}

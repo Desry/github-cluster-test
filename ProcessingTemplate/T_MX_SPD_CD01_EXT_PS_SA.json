@@ -1,0 +1,18 @@
+{
+  "description": "Extract for SPIDER_CommodDelta01 South America",
+  "folder": "MX_EOD",
+  "node": "LINUX",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"hello\""
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "description": "DEPRECATED v50",
+  "folder": "MX_EOD",
+  "node": "LINUX",
+  "passBy": true,
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "EOD",
+    "no_script",
+    "to_delete",
+    "SKIPPED"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"hello\""
+  },
+  "actions": 
+  [
+    {
+      "duration": 300000,
+      "durationThresholdType": "DURATION",
+      "processingActionType": "ADD_TAG",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "EXECUTING_LONG",
+      "processingCommand": {
+        "actionTargetType": "RELATED",
+        "relation": {
+          "relationType": "PARENT"
+        },
+        "restartType": "RESTART_FROM_BEGINNING",
+        "value": "LONG_RUNNING"
+      }
+    },
+    {
+      "duration": 300000,
+      "durationThresholdType": "DURATION",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "EXECUTING_LONG",
+      "processingCommand": {
+        "notificationChannel": "Executing_Long_OBM"
+      }
+    }
+  ]
+}

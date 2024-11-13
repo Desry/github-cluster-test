@@ -1,0 +1,236 @@
+{
+  "description": "40000|Finish of EOD for North America",
+  "folder": "MX_MONITOR",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_ACCOUNTING_SA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_ACCOUNTING_SA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_BROAD_DISCLOSURE_SA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_BROAD_DISCLOSURE_SA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_GENERIC_REPORT_SA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_GENERIC_REPORT_SA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_BOA_SA.T_MX_BOA_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_BOA_SA",
+      "workflowTemplateItem": "T_MX_BOA_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_FO_STRESS_SA.T_MX_FO_STRESS_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_FO_STRESS_SA",
+      "workflowTemplateItem": "T_MX_FO_STRESS_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_GENERAL2_SA.T_MX_GENERAL2_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_GENERAL2_SA",
+      "workflowTemplateItem": "T_MX_GENERAL2_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_MARKETDATA_COPY2_SA.T_MX_MARKETDATA_COPY2_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_MARKETDATA_COPY2_SA",
+      "workflowTemplateItem": "T_MX_MARKETDATA_COPY2_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_PNL_SA.T_MX_PNL_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_PNL_SA",
+      "workflowTemplateItem": "T_MX_PNL_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_RBPL_REPORTS_SA.T_MX_RBPL_REPORTS_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_RBPL_REPORTS_SA",
+      "workflowTemplateItem": "T_MX_RBPL_REPORTS_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_RECON_SA.T_MX_RECON_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_RECON_SA",
+      "workflowTemplateItem": "T_MX_RECON_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_RISKREPORT_SA.T_MX_RISKREPORT_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_RISKREPORT_SA",
+      "workflowTemplateItem": "T_MX_RISKREPORT_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_SHARK_SA.T_MX_SHARK_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_SHARK_SA",
+      "workflowTemplateItem": "T_MX_SHARK_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_SIMUL_CALC_STORE_SA.T_MX_SIMUL_CALC_STORE_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_SIMUL_CALC_STORE_SA",
+      "workflowTemplateItem": "T_MX_SIMUL_CALC_STORE_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_VAR_AUX_SA.T_MX_VAR_AUX_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_VAR_AUX_SA",
+      "workflowTemplateItem": "T_MX_VAR_AUX_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_SA_FINISH_EOD_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_FINISH_EOD_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_FINISH_EOD_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_SA_FINISH_EOD",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_FINISH_EOD",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_FINISH_EOD",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_FINISH_EOD_HEADER",
+          "predecessor": "T_MX_SA_FINISH_EOD_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_FINISH_EOD_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_FINISH_EOD_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_FINISH_EOD_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_FINISH_EOD",
+          "predecessor": "T_MX_SA_FINISH_EOD",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

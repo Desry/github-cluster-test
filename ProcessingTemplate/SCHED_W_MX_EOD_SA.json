@@ -1,0 +1,17 @@
+{
+  "onHold": true,
+  "owner": "Administrator",
+  "passBy": true,
+  "priority": "0",
+  "processingType": "TRIGGER",
+  "triggerType": "SCHEDULE",
+  "items": 
+  [
+    {
+      "name": "W_MX_EOD_SA",
+      "processingTemplate": "W_MX_EOD_SA",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ]
+}

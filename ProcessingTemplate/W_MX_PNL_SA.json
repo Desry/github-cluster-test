@@ -1,0 +1,819 @@
+{
+  "description": "14000|P&L reports SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_CLOSEDOWN_SA.T_MX_CLOSEDOWN_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_CLOSEDOWN_SA",
+      "workflowTemplateItem": "T_MX_CLOSEDOWN_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_PNL_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_PNL_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_PNL_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_DMT_INCCY_BSP_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_INCCY_BSP_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_INCCY_BSP_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_HEADER",
+          "predecessor": "T_MX_PNL_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_INCCY_BSP_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_INCCY_BSP_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_INCCY_BSP_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_INCCY_BSP_SA",
+          "predecessor": "T_MX_DMT_INCCY_BSP_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PNL_SA_SLEEP_45S",
+      "priority": "0",
+      "processingTemplate": "T_MX_PNL_SA_SLEEP_45S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_PNL_SA_SLEEP_45S",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_HEADER",
+          "predecessor": "T_MX_PNL_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_ACCRPL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_ACCRPL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_ACCRPL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_SLEEP_45S",
+          "predecessor": "T_MX_PNL_SA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_LIQ_PL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_LIQ_PL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_LIQ_PL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_SLEEP_45S",
+          "predecessor": "T_MX_PNL_SA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_MTM_PL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_MTM_PL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_MTM_PL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_SLEEP_45S",
+          "predecessor": "T_MX_PNL_SA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_MTM_PL_VAR_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_MTM_PL_VAR_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_MTM_PL_VAR_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_SLEEP_45S",
+          "predecessor": "T_MX_PNL_SA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_TP_ALL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_TP_ALL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_TP_ALL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_SLEEP_45S",
+          "predecessor": "T_MX_PNL_SA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_ACCRPL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_ACCRPL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_ACCRPL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_ACCRPL_SA",
+          "predecessor": "T_MX_DMT_ACCRPL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_SA",
+          "predecessor": "T_MX_DMT_MTM_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_ACCRPL_BSP_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_ACCRPL_BSP_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_ACCRPL_BSP_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_ACCRPL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_ACCRPL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_AMO_PL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_AMO_PL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_AMO_PL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_ACCRPL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_ACCRPL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_AMO_PL_SA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_AMO_PL_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_AMO_PL_SA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_AMO_PL_SA",
+          "predecessor": "T_MX_EXT_AMO_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_MTM_CG_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_MTM_CG_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_MTM_CG_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_INCCY_BSP_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_INCCY_BSP_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_MTM_CG_SA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_MTM_CG_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_MTM_CG_SA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_MTM_CG_SA",
+          "predecessor": "T_MX_EXT_MTM_CG_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_MTM_PL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_MTM_PL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_MTM_PL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_INCCY_BSP_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_INCCY_BSP_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_MTM_PL_SA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_MTM_PL_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_MTM_PL_SA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_MTM_PL_SA",
+          "predecessor": "T_MX_EXT_MTM_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_ACCRPL_BSP_SA",
+          "predecessor": "T_MX_DMT_ACCRPL_BSP_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_ACCRPL_RPT_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_ACCRPL_RPT_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_ACCRPL_RPT_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_ACCRPL_BSP_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DMT_ACCRPL_RPT_SA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_ACCRPL_RPT_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_ACCRPL_RPT_SA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_ACCRPL_RPT_SA",
+          "predecessor": "T_MX_DMT_ACCRPL_RPT_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_MTM_PL_VAR_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_MTM_PL_VAR_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_MTM_PL_VAR_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_MTM_PL_VAR_SA",
+          "predecessor": "T_MX_DMT_MTM_PL_VAR_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_MTM_PL_VAR_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_MTM_PL_VAR_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_MTM_PL_VAR_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_MTM_PL_VAR_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_MTM_PL_VAR_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_MTM_PL_VAR_SA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_MTM_PL_VAR_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_MTM_PL_VAR_SA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_MTM_PL_VAR_SA",
+          "predecessor": "T_MX_EXT_MTM_PL_VAR_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_DMT_TP_ALL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_DMT_TP_ALL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_DMT_TP_ALL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_TP_ALL_SA",
+          "predecessor": "T_MX_DMT_TP_ALL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_LIQ_PL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_LIQ_PL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_LIQ_PL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_LIQ_PL_SA",
+          "predecessor": "T_MX_DMT_LIQ_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_LIQ_PL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_LIQ_PL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_LIQ_PL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_MTM_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_LIQ_PL_SA",
+          "predecessor": "T_MX_GATHER_STATS_LIQ_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_LIQ_PL_SA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_LIQ_PL_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_LIQ_PL_SA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_LIQ_PL_SA",
+          "predecessor": "T_MX_EXT_LIQ_PL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TP_STATIC_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_TP_STATIC_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_TP_STATIC_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_SLEEP_45S",
+          "predecessor": "T_MX_PNL_SA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_TP_STATIC_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_TP_STATIC_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_TP_STATIC_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TP_STATIC_PS_SA",
+          "predecessor": "T_MX_TP_STATIC_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_PNL_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_PNL_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_PNL_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_ACCRPL_RPT_SA_RENAME",
+          "predecessor": "T_MX_DMT_ACCRPL_RPT_SA_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_AMO_PL_SA_RENAME",
+          "predecessor": "T_MX_EXT_AMO_PL_SA_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_LIQ_PL_SA_RENAME",
+          "predecessor": "T_MX_EXT_LIQ_PL_SA_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_MTM_CG_SA_RENAME",
+          "predecessor": "T_MX_EXT_MTM_CG_SA_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_MTM_PL_SA_RENAME",
+          "predecessor": "T_MX_EXT_MTM_PL_SA_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_MTM_PL_VAR_SA_RENAME",
+          "predecessor": "T_MX_EXT_MTM_PL_VAR_SA_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_DMT_TP_ALL_SA",
+          "predecessor": "T_MX_GATHER_STATS_DMT_TP_ALL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_TP_STATIC_PS_SA",
+          "predecessor": "T_MX_GATHER_STATS_TP_STATIC_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_PNL_SA_SLEEP_45S",
+          "predecessor": "T_MX_PNL_SA_SLEEP_45S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

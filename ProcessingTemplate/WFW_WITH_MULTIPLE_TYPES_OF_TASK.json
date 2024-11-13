@@ -1,0 +1,32 @@
+{
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "echo_test",
+      "processingTemplate": "echo_test",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH"
+    },
+    {
+      "name": "test",
+      "processingTemplate": "test",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH"
+    },
+    {
+      "name": "testFile",
+      "processingTemplate": "testFile",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "PYTHON"
+    }
+  ]
+}

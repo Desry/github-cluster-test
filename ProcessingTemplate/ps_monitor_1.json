@@ -1,0 +1,10 @@
+{
+  "monitorType": "POWERSHELL_MONITOR",
+  "owner": "des_user",
+  "priority": "0",
+  "processingType": "SERVICE",
+  "serverNodeType": "WINDOWS",
+  "serviceType": "MONITOR",
+  "customFieldValues": {
+  }
+}

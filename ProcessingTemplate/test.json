@@ -1,0 +1,11 @@
+{
+  "integration": "test_integration",
+  "integrationType": "TEMPLATE",
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "taskType": "SH",
+  "customFieldValues": {
+  }
+}

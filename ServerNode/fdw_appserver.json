@@ -1,0 +1,67 @@
+{
+  "serverNodeType": "LINUX",
+  "totalWeightCapacity": 750,
+  "configuration": {
+    "AgentHeartbeat": 60000,
+    "NoOfPrcss": 800,
+    "ShellCmd": "/bin/bash",
+    "connectionTimeout": 60000,
+    "enfPort": 4445,
+    "firstDayOfWeek": 6,
+    "ftpInterval": 5000,
+    "logLevel": "INFO",
+    "logMaxFiles": 60,
+    "persistence": true,
+    "sysoutMaxAgeInDays": 7
+  },
+  "customFieldValues": {
+  },
+  "endpoints": 
+  [
+    {
+      "endpoint": "fdwadmin",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "aeguser",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "fbruser",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "fcluser",
+      "endpointType": "SSH"
+    },
+    {
+      "defaultEndpoint": true,
+      "endpoint": "fdwuser",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "fnluser",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "fenuser",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "frcuser",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "s2buser",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "fususer",
+      "endpointType": "SSH"
+    },
+    {
+      "endpoint": "sptuser",
+      "endpointType": "SSH"
+    }
+  ]
+}

@@ -1,0 +1,398 @@
+{
+  "description": "14000|Fund sweeping SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "actions": 
+  [
+    {
+      "duration": 18600000,
+      "durationTimeMode": "TIME_SINCE_CREATED",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "NOT_STARTED",
+      "processingCommand": {
+        "notificationChannel": "OBM"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "PROCESSING_TEMPLATE",
+      "name": "W_MX_FAILED_SETTLEMENT_SA",
+      "processingStatus": "COMPLETED",
+      "processingTemplate": "W_MX_FAILED_SETTLEMENT_SA",
+      "processingType": "WORKFLOW",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowType": "STANDARD"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_BROKER_FEE_SA.T_MX_BROKER_FEE_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_BROKER_FEE_SA",
+      "workflowTemplateItem": "T_MX_BROKER_FEE_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_MARKETDATA_COPY_SA.T_MX_MARKETDATA_COPY_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_MARKETDATA_COPY_SA",
+      "workflowTemplateItem": "T_MX_MARKETDATA_COPY_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_GENERAL1_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_GENERAL1_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GENERAL1_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_AUTO_FIX_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_AUTO_FIX_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_AUTO_FIX_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BOND_NET_SEC_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BOND_NET_SEC_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BOND_NET_SEC_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_COM_FUT_NETTING_SA",
+      "processingTemplate": "T_MX_COM_FUT_NETTING_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_COM_FUT_NETTING_SA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_DEPO_FUND_SWEEP_RIO",
+      "priority": "0",
+      "processingTemplate": "T_MX_DEPO_FUND_SWEEP_RIO",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DEPO_FUND_SWEEP_RIO",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EOD_EVTTERM_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EOD_EVTTERM_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EOD_EVTTERM_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EOD_EXER_FX_FUT_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EOD_EXER_FX_FUT_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EOD_EXER_FX_FUT_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FX_FUT_NETTING_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_FX_FUT_NETTING_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FX_FUT_NETTING_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_IR_FUT_NETTING_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_IR_FUT_NETTING_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_IR_FUT_NETTING_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MANAGE_TRADE_MATURED_FUTURES_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MANAGE_TRADE_MATURED_FUTURES_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MANAGE_TRADE_MATURED_FUTURES_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RESERVE_UNWD_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_RESERVE_UNWD_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RESERVE_UNWD_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GENERAL1_SA_HEADER",
+          "predecessor": "T_MX_GENERAL1_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GENERAL1_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_GENERAL1_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GENERAL1_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_AUTO_FIX_SA",
+          "predecessor": "T_MX_AUTO_FIX_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BOND_NET_SEC_SA",
+          "predecessor": "T_MX_BOND_NET_SEC_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_COM_FUT_NETTING_SA",
+          "predecessor": "T_MX_COM_FUT_NETTING_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DEPO_FUND_SWEEP_RIO",
+          "predecessor": "T_MX_DEPO_FUND_SWEEP_RIO",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EOD_EVTTERM_SA",
+          "predecessor": "T_MX_EOD_EVTTERM_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EOD_EXER_FX_FUT_SA",
+          "predecessor": "T_MX_EOD_EXER_FX_FUT_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FX_FUT_NETTING_SA",
+          "predecessor": "T_MX_FX_FUT_NETTING_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_IR_FUT_NETTING_SA",
+          "predecessor": "T_MX_IR_FUT_NETTING_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MANAGE_TRADE_MATURED_FUTURES_SA",
+          "predecessor": "T_MX_MANAGE_TRADE_MATURED_FUTURES_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RESERVE_UNWD_SA",
+          "predecessor": "T_MX_RESERVE_UNWD_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

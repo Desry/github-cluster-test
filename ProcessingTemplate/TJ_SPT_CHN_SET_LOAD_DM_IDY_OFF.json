@@ -1,0 +1,15 @@
+{
+  "description": "SPT Disable CHN LOAD DM Intraday",
+  "owner": "des_user",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "INTERNAL",
+  "taskType": "SET_VARIABLE_VALUE",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "operator": "SET",
+    "resource": "TEST_VAR_4",
+    "value": "var4"
+  }
+}

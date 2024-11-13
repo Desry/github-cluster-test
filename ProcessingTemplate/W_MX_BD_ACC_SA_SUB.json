@@ -1,0 +1,98 @@
+{
+  "description": "14999|BD Accounting EOD SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_BD_ACC_JOURNAL_PS_SA",
+      "processingTemplate": "T_MX_BD_ACC_JOURNAL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_ACC_JOURNAL_PS_SA"
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_SA",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_SA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_ACC_JOURNAL_PS_SA",
+          "predecessor": "T_MX_BD_ACC_JOURNAL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_ACC_JRNL_EX_PS_SA",
+      "processingTemplate": "T_MX_BD_ACC_JRNL_EX_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_ACC_JRNL_EX_PS_SA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_SA",
+          "predecessor": "T_MX_GATHER_STATS_BD_ACC_JOURNAL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "WORKFLOW_ITEM",
+          "name": "W_MX_BROAD_DISCLOSURE_SA_SUB_2.T_MX_GATHER_STATS_BD_CA_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowTemplate": "W_MX_BROAD_DISCLOSURE_SA_SUB_2",
+          "workflowTemplateItem": "T_MX_GATHER_STATS_BD_CA_PS_SA"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BD_ACC_JRNL_EX_PS_SA_RENAME",
+      "processingTemplate": "T_MX_BD_ACC_JRNL_EX_PS_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_ACC_JRNL_EX_PS_SA_RENAME",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_ACC_JRNL_EX_PS_SA",
+          "predecessor": "T_MX_BD_ACC_JRNL_EX_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

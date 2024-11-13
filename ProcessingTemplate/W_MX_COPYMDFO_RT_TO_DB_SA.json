@@ -1,0 +1,159 @@
+{
+  "description": "14000|Market data copy realtime to DB FO SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_COPYMDFO_RT_TO_DB_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_COPYMDFO_RT_TO_DB_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_COPYMDFO_RT_TO_DB_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_SA_PSC_MD_IMP_FXSP_FO_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_PSC_MD_IMP_FXSP_FO_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_PSC_MD_IMP_FXSP_FO_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_COPYMDFO_RT_TO_DB_SA_HEADER",
+          "predecessor": "T_MX_COPYMDFO_RT_TO_DB_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_PSC_MD_IMP_FXSW_FO_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_PSC_MD_IMP_FXSW_FO_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_PSC_MD_IMP_FXSW_FO_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_PSC_MD_IMP_FXSP_FO_SA",
+          "predecessor": "T_MX_SA_PSC_MD_IMP_FXSP_FO_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_PSC_MD_IMP_GMP_FO_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_PSC_MD_IMP_GMP_FO_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_PSC_MD_IMP_GMP_FO_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_PSC_MD_IMP_FXSW_FO_SA",
+          "predecessor": "T_MX_SA_PSC_MD_IMP_FXSW_FO_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_PSC_MD_IMP_RTSH_FO_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_PSC_MD_IMP_RTSH_FO_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_PSC_MD_IMP_RTSH_FO_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_PSC_MD_IMP_GMP_FO_SA",
+          "predecessor": "T_MX_SA_PSC_MD_IMP_GMP_FO_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_PSC_MD_IMP_SCPR_FO_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_PSC_MD_IMP_SCPR_FO_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_PSC_MD_IMP_SCPR_FO_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_PSC_MD_IMP_RTSH_FO_SA",
+          "predecessor": "T_MX_SA_PSC_MD_IMP_RTSH_FO_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_COPYMDFO_RT_TO_DB_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_COPYMDFO_RT_TO_DB_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_COPYMDFO_RT_TO_DB_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_PSC_MD_IMP_SCPR_FO_SA",
+          "predecessor": "T_MX_SA_PSC_MD_IMP_SCPR_FO_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

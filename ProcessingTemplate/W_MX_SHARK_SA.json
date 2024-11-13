@@ -1,0 +1,330 @@
+{
+  "description": "14000|Shark reports South America",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_FO_DATEMOVE_SA.T_MX_FO_DATEMOVE_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_FO_DATEMOVE_SA",
+      "workflowTemplateItem": "T_MX_FO_DATEMOVE_SA_TRAILER"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_PNL_SA.T_MX_GATHER_STATS_DMT_TP_ALL_SA",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_PNL_SA",
+      "workflowTemplateItem": "T_MX_GATHER_STATS_DMT_TP_ALL_SA"
+    },
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_PNL_SA.T_MX_GATHER_STATS_TP_STATIC_PS_SA",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_PNL_SA",
+      "workflowTemplateItem": "T_MX_GATHER_STATS_TP_STATIC_PS_SA"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_SHARK_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHARK_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHARK_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_SHK_HA_DF_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_DF_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_DF_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHARK_SA_HEADER",
+          "predecessor": "T_MX_SHARK_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_DF_PS_SA_FILE_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_DF_PS_SA_FILE_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_DF_PS_SA_FILE_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_DF_PS_SA",
+          "predecessor": "T_MX_SHK_HA_DF_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_FX_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_FX_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_FX_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_DF_PS_SA_FILE_RENAME",
+          "predecessor": "T_MX_SHK_HA_DF_PS_SA_FILE_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_FX_PS_SA_FILE_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_FX_PS_SA_FILE_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_FX_PS_SA_FILE_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_FX_PS_SA",
+          "predecessor": "T_MX_SHK_HA_FX_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_OT_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_OT_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_OT_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_FX_PS_SA_FILE_RENAME",
+          "predecessor": "T_MX_SHK_HA_FX_PS_SA_FILE_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_OT_PS_SA_FILE_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_OT_PS_SA_FILE_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_OT_PS_SA_FILE_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_OT_PS_SA",
+          "predecessor": "T_MX_SHK_HA_OT_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_RTBS_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_RTBS_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_RTBS_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_OT_PS_SA_FILE_RENAME",
+          "predecessor": "T_MX_SHK_HA_OT_PS_SA_FILE_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_RTBS_PS_SA_FILE_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_RTBS_PS_SA_FILE_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_RTBS_PS_SA_FILE_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_RTBS_PS_SA",
+          "predecessor": "T_MX_SHK_HA_RTBS_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_RT_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_RT_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_RT_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_RTBS_PS_SA_FILE_RENAME",
+          "predecessor": "T_MX_SHK_HA_RTBS_PS_SA_FILE_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHK_HA_RT_PS_SA_FILE_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHK_HA_RT_PS_SA_FILE_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHK_HA_RT_PS_SA_FILE_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_RT_PS_SA",
+          "predecessor": "T_MX_SHK_HA_RT_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FODHAID_DATE_MOVE_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_FODHAID_DATE_MOVE_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FODHAID_DATE_MOVE_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SHK_HA_RT_PS_SA_FILE_RENAME",
+          "predecessor": "T_MX_SHK_HA_RT_PS_SA_FILE_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SHARK_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SHARK_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SHARK_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FODHAID_DATE_MOVE_SA",
+          "predecessor": "T_MX_FODHAID_DATE_MOVE_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

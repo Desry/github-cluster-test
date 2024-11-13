@@ -1,0 +1,30 @@
+{
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "TRIGGER",
+  "triggerType": "EVENT",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "RESOURCE",
+      "name": "TEST_EVENT",
+      "processingStatus": "COMPLETED",
+      "processingType": "TRIGGER",
+      "resource": "TEST_EVENT",
+      "resourceType": "EVENT",
+      "triggerType": "EVENT"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "wait_triggered_by_event",
+      "processingTemplate": "wait_triggered_by_event",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "WAIT"
+    }
+  ]
+}

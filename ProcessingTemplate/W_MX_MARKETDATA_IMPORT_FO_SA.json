@@ -1,0 +1,241 @@
+{
+  "description": "14000|Market data import FO SOUTHAM",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_SA_START_EOD.T_MX_SA_START_EOD_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_SA_START_EOD",
+      "workflowTemplateItem": "T_MX_SA_START_EOD_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_FO_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_FO_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_FO_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP10",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP10",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP10",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_FO_SA_HEADER",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_FO_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "R_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+      "weight": "1",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP10",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP10",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP5",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP5",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP5",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_FO_SA_HEADER",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_FO_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "R_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+      "weight": "1",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP5",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_FO_SA_SLEEP5",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+          "predecessor": "R_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+          "predecessor": "R_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_FO_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_FO_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_FO_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+          "predecessor": "T_MX_FXSPOT_IMPORT_FO_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_IMPORT_FO_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

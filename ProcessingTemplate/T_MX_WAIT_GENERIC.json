@@ -1,0 +1,27 @@
+{
+  "description": "Generic sleep task",
+  "node": "LINUX",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "tags": 
+  [
+    "sleep"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"hello\""
+  },
+  "designParameters": 
+  [
+    {
+      "defaultValue": "10",
+      "editorType": "NUMBER",
+      "name": "WAIT_SECONDS",
+      "required": true,
+      "title": "WAIT_SECONDS"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "autoArchive": true,
+  "description": "change assign group + assignee",
+  "lazyLoad": true,
+  "owner": "mslebodn",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "CtaskAuto",
+    "NotMonitored"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+  },
+  "items": 
+  [
+    {
+      "name": "PutInProgress.CtaskAuto.wst",
+      "processingTemplate": "PutInProgress.CtaskAuto.wst",
+      "templateParameters": {
+        "P_ASSIGNEE": "Marek.Slebodnik@dhl.com",
+        "P_REMOVE_EXT": "No",
+        "P_WATCHLIST": "marek.slebodnik@dhl.com"
+      }
+    },
+    {
+      "name": "TestPayload.CtaskAuto.shae",
+      "processingTemplate": "TestPayload.CtaskAuto.shae",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "PutInProgress.CtaskAuto.wst",
+          "predecessor": "PutInProgress.CtaskAuto.wst",
+          "processingStatus": "COMPLETED"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCtask.CtaskAuto.wst",
+      "processingTemplate": "UpdateCtask.CtaskAuto.wst",
+      "templateParameters": {
+        "P_CLOSE_NOTES": "close notest from test payload",
+        "P_CTASK_AGROUP": "GLOBAL-OPS.ACOC.UC.OWNERS",
+        "P_CTASK_STATUS": "${VP_CTASK_STATUS#}",
+        "P_REMOVE_ASSIGNEE": "No",
+        "P_REMOVE_EXT": "No",
+        "P_SHORT_DESC": "AUTOMATION FAILS for ${SHORT_DESCRIPTION}",
+        "P_WORK_NOTES": "work notes from test payload for ${VP_CTASK_STATUS#} and ext_id: ${EXTERNAL_ID}"
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "TestPayload.CtaskAuto.shae",
+          "predecessor": "TestPayload.CtaskAuto.shae",
+          "processingStatus": "COMPLETED"
+        }
+      ]
+    }
+  ]
+}

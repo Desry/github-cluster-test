@@ -1,0 +1,22 @@
+{
+  "endpoint": "AnowReadOnlyReplica.Gbl.ep",
+  "endpointType": "POSTGRESQL",
+  "node": "AnowEngine.Postgres.apf",
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "POSTGRESQL",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "taskType": "RDBMS_SQL_STATEMENT",
+  "processingCommand": {
+    "rowsVariableLevel": "SELF",
+    "selectResultAction": "ALL_ROWS_AS_JSON_VARIABLE",
+    "selectResultVariable": "RowsREQIT",
+    "selectResultVariableLevel": "SELF",
+    "statement": "select \n  date(pr.date_created) as day,\nCASE \n  \tWHEN (LENGTH(pr_ctx.value) - LENGTH(REPLACE(pr_ctx.value, '.', ''))) = 2 THEN split_part(pr_ctx.value, '.', 2)\n  \tWHEN (LENGTH(pr_ctx.value) - LENGTH(REPLACE(pr_ctx.value, '.', ''))) = 3 THEN split_part(pr_ctx.value, '.', 3)\n\tELSE pr2.template\nEND as uc_name,\ncount(*) as executions,\npr.domain as domain\nfrom anow.processing pr\ninner join anow.processing pr2 on pr.root_processing_id = pr2.id\ninner join anow.processing_context_variable pr_ctx on pr.root_processing_id = pr_ctx.processing_id\nwhere 1=1\nAND pr_ctx.name = 'WORKFLOW_ID'\nAND pr.date_created >= to_timestamp('${DateFrom}', 'YYYY-MM-DD')\nAND pr.date_created < to_timestamp('${DateTo}', 'YYYY-MM-DD')\nAND pr2.template like '%TRIGGER.REQIT.WST'\nAND ( \n\t( pr.processing_type = 'TASK' and pr.task_type <> 'TRIGGER_ITEM' )\n    OR pr.processing_type = 'SERVICE'\n\tOR pr.trigger_type='SELF_SERVICE'\n)\ngroup by day, uc_name, pr.domain",
+    "statementType": "SELECT"
+  }
+}

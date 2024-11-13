@@ -1,0 +1,12 @@
+{
+  "owner": "des_user",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "WINDOWS",
+  "taskType": "POWERSHELL",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "exit 1"
+  }
+}

@@ -1,0 +1,434 @@
+{
+  "description": "14000|B3 Unit Cost Import SA",
+  "folder": "MX_EOD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD",
+    "SA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+      "processingTemplate": "R_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+      "processingTemplate": "T_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+          "predecessor": "R_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+      "processingTemplate": "R_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_STARTED",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        },
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+          "predecessor": "T_MX_B3UNITCOSTTRANSFORM_PUB_DDI_DI",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+      "processingTemplate": "T_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+          "predecessor": "R_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+      "processingTemplate": "R_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+          "predecessor": "T_MX_B3UNITCOSTTRANSFORM_RBB_DDI_DI",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+      "processingTemplate": "T_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+          "predecessor": "R_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+      "processingTemplate": "R_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+          "predecessor": "T_MX_B3UNITCOSTTRANSFORM_RIO_DDI_DI",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+      "processingTemplate": "T_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+          "predecessor": "R_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+      "processingTemplate": "R_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+          "predecessor": "T_MX_B3UNITCOSTTRANSFORM_PUB_DOL",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+      "processingTemplate": "T_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+          "predecessor": "R_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "R_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+      "processingTemplate": "R_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "title": "R_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+          "predecessor": "T_MX_B3UNITCOSTTRANSFORM_RBB_DOL",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "highRiskStatisticMethod": "PERCENT",
+      "highRiskStatisticPeriod": "WEEK",
+      "highRiskThreshold": 5,
+      "name": "T_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+      "processingTemplate": "T_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "statisticMethod": "AVERAGE",
+      "statisticPeriod": "MONTH",
+      "taskType": "SH",
+      "title": "T_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+          "predecessor": "R_MX_B3UNITCOSTTRANSFORM_RIO_DOL",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    }
+  ]
+}

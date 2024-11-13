@@ -1,0 +1,63 @@
+{
+  "description": "B3 Unit Cost to Murex RIO_DOL",
+  "folder": "MX_EOD",
+  "highRiskStatisticMethod": "PERCENT",
+  "highRiskStatisticPeriod": "WEEK",
+  "highRiskThreshold": 5,
+  "node": "LINUX",
+  "owner": "Administrator",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "LINUX",
+  "statisticMethod": "AVERAGE",
+  "statisticPeriod": "MONTH",
+  "tags": 
+  [
+    "EOD"
+  ],
+  "taskType": "SH",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "script": "echo \"suha\""
+  },
+  "actions": 
+  [
+    {
+      "duration": 1800000,
+      "durationThresholdType": "DURATION",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "EXECUTING_LONG",
+      "processingCommand": {
+        "notificationChannel": "Executing_Long_OBM",
+        "notificationChannelParameters": {
+          "affectedCI": "${domain}",
+          "anow_severity": "minor",
+          "apikey": "{apiKey}",
+          "domain": "DOMAIN_NAME",
+          "name": "${name}",
+          "node": "${node}",
+          "objectLink": "${objectLink}",
+          "processingStatus": "${processingStatus}",
+          "rootName": "${rootName}"
+        }
+      }
+    },
+    {
+      "duration": 1800000,
+      "durationThresholdType": "DURATION",
+      "processingActionType": "ADD_TAG",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "EXECUTING_LONG",
+      "processingCommand": {
+        "actionTargetType": "RELATED",
+        "relation": {
+          "relationType": "PARENT"
+        },
+        "restartType": "RESTART_FROM_BEGINNING",
+        "value": "LONG_RUNNING"
+      }
+    }
+  ]
+}

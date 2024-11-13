@@ -1,0 +1,170 @@
+{
+  "description": "14000|Set funding rate, export Sparc and copy IPV MDS SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_CRV_CHK_SA.T_MX_CRV_CHK_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_CRV_CHK_SA",
+      "workflowTemplateItem": "T_MX_CRV_CHK_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_MARKETDATA_COPY_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETDATA_COPY_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_COPY_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_MD_COPY_PCIPV_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MD_COPY_PCIPV_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MD_COPY_PCIPV_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_COPY_SA_HEADER",
+          "predecessor": "T_MX_MARKETDATA_COPY_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MD_COPY_PF_FO_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MD_COPY_PF_FO_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MD_COPY_PF_FO_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_COPY_SA_HEADER",
+          "predecessor": "T_MX_MARKETDATA_COPY_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RABO_LUNA_DF_10Y",
+      "priority": "0",
+      "processingTemplate": "T_MX_RABO_LUNA_DF_10Y",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RABO_LUNA_DF_10Y",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_COPY_SA_HEADER",
+          "predecessor": "T_MX_MARKETDATA_COPY_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RABO_LUNA_DF_10Y_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_RABO_LUNA_DF_10Y_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RABO_LUNA_DF_10Y_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RABO_LUNA_DF_10Y",
+          "predecessor": "T_MX_RABO_LUNA_DF_10Y",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_COPY_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_MARKETDATA_COPY_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_COPY_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MD_COPY_PCIPV_SA",
+          "predecessor": "T_MX_MD_COPY_PCIPV_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MD_COPY_PF_FO_SA",
+          "predecessor": "T_MX_MD_COPY_PF_FO_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RABO_LUNA_DF_10Y_RENAME",
+          "predecessor": "T_MX_RABO_LUNA_DF_10Y_RENAME",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "owner": "des_user",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "wait_3s",
+      "processingTemplate": "wait_3s",
+      "processingType": "TASK",
+      "serverNodeType": "INTERNAL",
+      "taskType": "WAIT",
+      "title": "overwritten_wait_3s"
+    }
+  ]
+}

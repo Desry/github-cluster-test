@@ -1,0 +1,13 @@
+{
+  "owner": "des_user",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "INTERNAL",
+  "taskType": "WAIT",
+  "customFieldValues": {
+  },
+  "processingCommand": {
+    "waitDuration": "PT3S",
+    "waitMode": "FOR"
+  }
+}

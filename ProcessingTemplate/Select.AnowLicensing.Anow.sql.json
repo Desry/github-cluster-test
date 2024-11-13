@@ -1,0 +1,22 @@
+{
+  "endpoint": "AnowReadOnlyReplica.Gbl.ep",
+  "endpointType": "POSTGRESQL",
+  "node": "AnowEngine.Postgres.apf",
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "POSTGRESQL",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "taskType": "RDBMS_SQL_STATEMENT",
+  "processingCommand": {
+    "rowsVariableLevel": "SELF",
+    "selectResultAction": "ALL_ROWS_AS_JSON_VARIABLE",
+    "selectResultVariable": "Rows",
+    "selectResultVariableLevel": "PARENT",
+    "statement": "select \n  date(pr.date_created) as day,\nCASE \n  \tWHEN (LENGTH(pr2.template) - LENGTH(REPLACE(pr2.template, '.', ''))) = 2 THEN split_part(pr2.template, '.', 2)\n  \tWHEN (LENGTH(pr2.template) - LENGTH(REPLACE(pr2.template, '.', ''))) = 3 THEN split_part(pr2.template, '.', 3)\n\tELSE pr2.template\nEND as uc_name,\ncount(*) as executions,\npr.domain as domain\nfrom anow.processing pr inner join anow.processing pr2 on pr.root_processing_id = pr2.id\nwhere 1=1\nAND pr.date_created >= to_timestamp('${DateFrom}', 'YYYY-MM-DD')\nAND pr.date_created < to_timestamp('${DateTo}', 'YYYY-MM-DD')\nAND pr2.template not like '%TRIGGER.REQIT.WST'\nAND ( \n\t( pr.processing_type = 'TASK' and pr.task_type <> 'TRIGGER_ITEM' )\n    OR pr.processing_type = 'SERVICE'\n\tOR pr.trigger_type='SELF_SERVICE'\n)\ngroup by day, uc_name, pr.domain",
+    "statementType": "SELECT"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "description": "14000|OPS failed settlement and failed settlement funding SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_TRD_FAIL_SETL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_TRD_FAIL_SETL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_TRD_FAIL_SETL_PS_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_WAIT_GENERIC",
+      "processingTemplate": "T_MX_WAIT_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FAILED_SETTLEMENT_DELAY60_SA",
+      "templateParameters": {
+        "WAIT_SECONDS": 60
+      }
+    },
+    {
+      "name": "T_MX_DLV_FAIL_SETL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_DLV_FAIL_SETL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DLV_FAIL_SETL_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GCD_FAIL_SETL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GCD_FAIL_SETL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GCD_FAIL_SETL_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_UDF_FAIL_SETL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_UDF_FAIL_SETL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_UDF_FAIL_SETL_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FAIL_ACTUALFUND_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_FAIL_ACTUALFUND_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FAIL_ACTUALFUND_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DLV_FAIL_SETL_PS_SA",
+          "predecessor": "T_MX_DLV_FAIL_SETL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_GCD_FAIL_SETL_PS_SA",
+          "predecessor": "T_MX_GCD_FAIL_SETL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_TRD_FAIL_SETL_PS_SA",
+          "predecessor": "T_MX_TRD_FAIL_SETL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_UDF_FAIL_SETL_PS_SA",
+          "predecessor": "T_MX_UDF_FAIL_SETL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_SA_LD",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_SA_LD",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_SA_LD",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_FAIL_ACTUALFUND_SA",
+          "predecessor": "T_MX_FAIL_ACTUALFUND_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_LD_FAIL_SETL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_LD_FAIL_SETL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_LD_FAIL_SETL_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_SA_LD",
+          "parent": "46cd6a37-51ef-4376-bd49-c1202254cca0",
+          "predecessor": "T_MX_CHECK_WF_SA_LD",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_SA_LD",
+          "parent": "46cd6a37-51ef-4376-bd49-c1202254cca0",
+          "predecessor": "T_MX_CHECK_WF_SA_LD",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "46cd6a37-51ef-4376-bd49-c1202254cca0",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FAIL_SETL_EX_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_FAIL_SETL_EX_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FAIL_SETL_EX_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LD_FAIL_SETL_PS_SA",
+          "predecessor": "T_MX_LD_FAIL_SETL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPC_FSETL_EX_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPC_FSETL_EX_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SPC_FSETL_EX_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_LD_FAIL_SETL_PS_SA",
+          "predecessor": "T_MX_LD_FAIL_SETL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SPC_FSETL_EX_PS_SA_RENAME",
+      "priority": "0",
+      "processingTemplate": "T_MX_SPC_FSETL_EX_PS_SA_RENAME",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SPC_FSETL_EX_PS_SA_RENAME",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SPC_FSETL_EX_PS_SA",
+          "predecessor": "T_MX_SPC_FSETL_EX_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

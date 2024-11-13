@@ -1,0 +1,340 @@
+{
+  "description": "14000|Livebook start South America",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "actions": 
+  [
+    {
+      "duration": 14400000,
+      "durationTimeMode": "TIME_SINCE_CREATED",
+      "processingActionType": "NOTIFY_CHANNEL",
+      "processingEventCategory": "PROCESSING",
+      "processingEventType": "NOT_STARTED",
+      "processingCommand": {
+        "notificationChannel": "OBM"
+      }
+    }
+  ],
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_SA_START_RBPL.T_MX_SA_START_RBPL_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_SA_START_RBPL",
+      "workflowTemplateItem": "T_MX_SA_START_RBPL_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_SA_REFRESH_CONFIGURATION_FOR_STOPPED_LIVEBOOKS",
+      "passBy": true,
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_REFRESH_CONFIGURATION_FOR_STOPPED_LIVEBOOKS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_REFRESH_CONFIGURATION_FOR_STOPPED_LIVEBOOKS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_HEADER",
+          "predecessor": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_WAIT_GENERIC",
+      "processingTemplate": "T_MX_WAIT_GENERIC",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_LIVEBOOK_WAIT_30S_SA",
+      "templateParameters": {
+        "WAIT_SECONDS": 30
+      },
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_REFRESH_CONFIGURATION_FOR_STOPPED_LIVEBOOKS",
+          "predecessor": "T_MX_SA_REFRESH_CONFIGURATION_FOR_STOPPED_LIVEBOOKS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_PC_FLASH",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_PC_FLASH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_PC_FLASH",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_SA1",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_SA1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_SA1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC3",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC3",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC3",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_SA1",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_SA1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_SA1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SA_START_LIVEBOOK_CALCULATION_SETS_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA",
+          "predecessor": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_PC_FLASH",
+          "predecessor": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_PC_FLASH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_SA1",
+          "predecessor": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_SA1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+          "predecessor": "T_MX_SA_ANT_STARTLB_IRD_FULLREVAL_SA_TODAYACTIVITY",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC3",
+          "predecessor": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC3",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+          "predecessor": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_PC_FLASH",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_SA1",
+          "predecessor": "T_MX_SA_ANT_STARTLB_IRD_RBPL_STOCK_SA_SA1",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_WAIT_GENERIC",
+          "predecessor": "T_MX_WAIT_GENERIC",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "lazyLoad": true,
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "workflowType": "FOR_EACH",
+  "processingCommand": {
+    "forEachCollection": "${Rows}",
+    "forEachCollectionType": "JSON",
+    "onUnresolvedVariables": "COMPLETE"
+  },
+  "items": 
+  [
+    {
+      "name": "HandleRow.AnowLicensing.Anow.wst",
+      "processingTemplate": "HandleRow.AnowLicensing.Anow.wst",
+      "processingType": "WORKFLOW",
+      "workflowType": "STANDARD"
+    }
+  ]
+}

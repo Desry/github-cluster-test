@@ -1,0 +1,776 @@
+{
+  "description": "14000|Brokerage fees SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_BROKER_FEE_SA_BAU",
+      "priority": "0",
+      "processingTemplate": "T_MX_BROKER_FEE_SA_BAU",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BROKER_FEE_SA_BAU",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_DMT_FEES_SA_BF",
+      "priority": "0",
+      "processingTemplate": "T_MX_DMT_FEES_SA_BF",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_DMT_FEES_SA_BF",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_BAU",
+          "predecessor": "T_MX_BROKER_FEE_SA_BAU",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_CLEARFEE_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_CLEARFEE_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_CLEARFEE_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_FEES_SA_BF",
+          "predecessor": "T_MX_DMT_FEES_SA_BF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_EXCGFEE_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_EXCGFEE_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_EXCGFEE_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_FEES_SA_BF",
+          "predecessor": "T_MX_DMT_FEES_SA_BF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_EXECFEE_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_EXECFEE_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_EXECFEE_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_FEES_SA_BF",
+          "predecessor": "T_MX_DMT_FEES_SA_BF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_PERMFEE_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_PERMFEE_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_PERMFEE_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_FEES_SA_BF",
+          "predecessor": "T_MX_DMT_FEES_SA_BF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_REGTFEE_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_REGTFEE_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_REGTFEE_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_FEES_SA_BF",
+          "predecessor": "T_MX_DMT_FEES_SA_BF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_EXT_SETFEE_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_EXT_SETFEE_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_EXT_SETFEE_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_DMT_FEES_SA_BF",
+          "predecessor": "T_MX_DMT_FEES_SA_BF",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+      "priority": "0",
+      "processingTemplate": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_CLEARFEE_SA",
+          "parent": "fc64770f-ad01-440b-b3d7-cb64b7c14749",
+          "predecessor": "T_MX_EXT_CLEARFEE_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_CLEARFEE_SA",
+          "parent": "fc64770f-ad01-440b-b3d7-cb64b7c14749",
+          "predecessor": "T_MX_EXT_CLEARFEE_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_EXCGFEE_SA",
+          "parent": "b79789d3-1b52-416b-bfbc-6141a94c819a",
+          "predecessor": "T_MX_EXT_EXCGFEE_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_EXCGFEE_SA",
+          "parent": "b79789d3-1b52-416b-bfbc-6141a94c819a",
+          "predecessor": "T_MX_EXT_EXCGFEE_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_EXECFEE_SA",
+          "parent": "491a02ce-05cd-4df3-b86d-be704037585f",
+          "predecessor": "T_MX_EXT_EXECFEE_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_EXECFEE_SA",
+          "parent": "491a02ce-05cd-4df3-b86d-be704037585f",
+          "predecessor": "T_MX_EXT_EXECFEE_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_PERMFEE_SA",
+          "parent": "cf37c243-52ee-4dea-b9e2-b6bcfcd18d9d",
+          "predecessor": "T_MX_EXT_PERMFEE_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_PERMFEE_SA",
+          "parent": "cf37c243-52ee-4dea-b9e2-b6bcfcd18d9d",
+          "predecessor": "T_MX_EXT_PERMFEE_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_REGTFEE_SA",
+          "parent": "9bfacf61-9c4b-46aa-983f-a2669a98a636",
+          "predecessor": "T_MX_EXT_REGTFEE_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_REGTFEE_SA",
+          "parent": "9bfacf61-9c4b-46aa-983f-a2669a98a636",
+          "predecessor": "T_MX_EXT_REGTFEE_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_SETFEE_SA",
+          "parent": "f38007d5-1860-4a89-83f2-3bceffeb9f9d",
+          "predecessor": "T_MX_EXT_SETFEE_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_EXT_SETFEE_SA",
+          "parent": "f38007d5-1860-4a89-83f2-3bceffeb9f9d",
+          "predecessor": "T_MX_EXT_SETFEE_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "b79789d3-1b52-416b-bfbc-6141a94c819a",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "fc64770f-ad01-440b-b3d7-cb64b7c14749",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "9bfacf61-9c4b-46aa-983f-a2669a98a636",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "491a02ce-05cd-4df3-b86d-be704037585f",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "f38007d5-1860-4a89-83f2-3bceffeb9f9d",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "cf37c243-52ee-4dea-b9e2-b6bcfcd18d9d",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_CLEA_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_CLEA_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_CLEA_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_EXCH_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_EXCH_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_EXCH_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_EXEC_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_EXEC_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_EXEC_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_PERM_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_PERM_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_PERM_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_REGT_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_REGT_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_REGT_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_SETT_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_SETT_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_SETT_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_STCLEA_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_STCLEA_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_STCLEA_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_CHECK_WF_STEXEC_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_CHECK_WF_STEXEC_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_CHECK_WF_STEXEC_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "predecessor": "T_MX_BROKER_FEE_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BROKER_FEE_SA_CHECKPOINT1",
+      "priority": "0",
+      "processingTemplate": "T_MX_BROKER_FEE_SA_CHECKPOINT1",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BROKER_FEE_SA_CHECKPOINT1",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_CLEA_SA",
+          "parent": "ac40ba5c-c4ec-4aeb-92d2-3926fb312d5a",
+          "predecessor": "T_MX_CHECK_WF_CLEA_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_CLEA_SA",
+          "parent": "ac40ba5c-c4ec-4aeb-92d2-3926fb312d5a",
+          "predecessor": "T_MX_CHECK_WF_CLEA_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_EXCH_SA",
+          "parent": "139563ce-5e2d-43cc-bf27-8f757c815ba8",
+          "predecessor": "T_MX_CHECK_WF_EXCH_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_EXCH_SA",
+          "parent": "139563ce-5e2d-43cc-bf27-8f757c815ba8",
+          "predecessor": "T_MX_CHECK_WF_EXCH_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_EXEC_SA",
+          "parent": "4937242b-3847-4214-8cae-978a8c20275d",
+          "predecessor": "T_MX_CHECK_WF_EXEC_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_EXEC_SA",
+          "parent": "4937242b-3847-4214-8cae-978a8c20275d",
+          "predecessor": "T_MX_CHECK_WF_EXEC_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_PERM_SA",
+          "parent": "102b1ba9-ee69-45bf-9f81-cde3b8122fd7",
+          "predecessor": "T_MX_CHECK_WF_PERM_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_PERM_SA",
+          "parent": "102b1ba9-ee69-45bf-9f81-cde3b8122fd7",
+          "predecessor": "T_MX_CHECK_WF_PERM_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_REGT_SA",
+          "parent": "1f809a82-b3cd-41ec-b890-4c509c8ee18a",
+          "predecessor": "T_MX_CHECK_WF_REGT_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_REGT_SA",
+          "parent": "1f809a82-b3cd-41ec-b890-4c509c8ee18a",
+          "predecessor": "T_MX_CHECK_WF_REGT_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_SETT_SA",
+          "parent": "c6c0e7b8-ac5e-47d2-815c-438d855f9626",
+          "predecessor": "T_MX_CHECK_WF_SETT_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_SETT_SA",
+          "parent": "c6c0e7b8-ac5e-47d2-815c-438d855f9626",
+          "predecessor": "T_MX_CHECK_WF_SETT_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_STCLEA_SA",
+          "parent": "53f27774-3155-4237-bd6a-ad16d1368b96",
+          "predecessor": "T_MX_CHECK_WF_STCLEA_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_STCLEA_SA",
+          "parent": "53f27774-3155-4237-bd6a-ad16d1368b96",
+          "predecessor": "T_MX_CHECK_WF_STCLEA_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_STEXEC_SA",
+          "parent": "cb203f53-f09e-4c25-a53c-5c15609d7332",
+          "predecessor": "T_MX_CHECK_WF_STEXEC_SA",
+          "processingStatus": "FAILED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_CHECK_WF_STEXEC_SA",
+          "parent": "cb203f53-f09e-4c25-a53c-5c15609d7332",
+          "predecessor": "T_MX_CHECK_WF_STEXEC_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "1f809a82-b3cd-41ec-b890-4c509c8ee18a",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "cb203f53-f09e-4c25-a53c-5c15609d7332",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "ac40ba5c-c4ec-4aeb-92d2-3926fb312d5a",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "102b1ba9-ee69-45bf-9f81-cde3b8122fd7",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "139563ce-5e2d-43cc-bf27-8f757c815ba8",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "53f27774-3155-4237-bd6a-ad16d1368b96",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "4937242b-3847-4214-8cae-978a8c20275d",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        },
+        {
+          "dependencyType": "OR",
+          "groupId": "c6c0e7b8-ac5e-47d2-815c-438d855f9626",
+          "name": "OR",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "STANDARD"
+        }
+      ]
+    }
+  ]
+}

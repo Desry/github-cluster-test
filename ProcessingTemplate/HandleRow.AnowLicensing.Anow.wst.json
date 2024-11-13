@@ -1,0 +1,20 @@
+{
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "workflowType": "STANDARD",
+  "items": 
+  [
+    {
+      "name": "Insert.AnowLicensing.Anow.sql",
+      "processingTemplate": "Insert.AnowLicensing.Anow.sql",
+      "processingType": "TASK",
+      "serverNodeType": "MYSQL",
+      "taskType": "RDBMS_SQL_STATEMENT"
+    }
+  ]
+}

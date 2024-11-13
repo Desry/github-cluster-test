@@ -1,0 +1,434 @@
+{
+  "description": "14000|Market data import",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_MD_COPY_EUR_SA",
+      "processingTemplate": "T_MX_MD_COPY_EUR_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MD_COPY_EUR_SA"
+    },
+    {
+      "name": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+      "processingTemplate": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MD_COPY_EUR_SA",
+          "predecessor": "T_MX_MD_COPY_EUR_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_10S",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_10S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_10S",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MD_COPY_EUR_SA",
+          "predecessor": "T_MX_MD_COPY_EUR_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_FXSPOT_IMPORT_SOUTHAM",
+      "processingTemplate": "R_MX_FXSPOT_IMPORT_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_FXSPOT_IMPORT_SOUTHAM",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_10S",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_10S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_FXSPOT_IMPORT_SOUTHAM",
+      "processingTemplate": "T_MX_FXSPOT_IMPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_FXSPOT_IMPORT_SOUTHAM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_FXSPOT_IMPORT_SOUTHAM",
+          "predecessor": "R_MX_FXSPOT_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_15S",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_15S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_15S",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MD_COPY_EUR_SA",
+          "predecessor": "T_MX_MD_COPY_EUR_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_TURNS_IMPORT_SOUTHAM",
+      "processingTemplate": "R_MX_TURNS_IMPORT_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_TURNS_IMPORT_SOUTHAM",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_15S",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_15S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_5S",
+      "processingTemplate": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_5S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_5S",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MD_COPY_EUR_SA",
+          "predecessor": "T_MX_MD_COPY_EUR_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_BONDPRICES_IMPORT_SOUTHAM",
+      "processingTemplate": "R_MX_BONDPRICES_IMPORT_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_BONDPRICES_IMPORT_SOUTHAM",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_5S",
+          "predecessor": "T_MX_MARKETDATA_IMPORT_SA_SLEEP_5S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_BONDPRICES_IMPORT_SOUTHAM",
+      "processingTemplate": "T_MX_BONDPRICES_IMPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BONDPRICES_IMPORT_SOUTHAM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_BONDPRICES_IMPORT_SOUTHAM",
+          "predecessor": "R_MX_BONDPRICES_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+      "processingTemplate": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+          "predecessor": "R_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+      "processingTemplate": "R_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_FUTURECONVEXITY_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+      "processingTemplate": "T_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+          "predecessor": "R_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "name": "R_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+      "processingTemplate": "R_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+      "processingType": "SERVICE",
+      "sensorType": "FILE_SENSOR",
+      "serverNodeType": "FILE_MANAGER",
+      "serviceType": "SENSOR",
+      "title": "R_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_READY",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+          "predecessor": "T_MX_MARKETRATESHEET_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+      "processingTemplate": "T_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+          "predecessor": "R_MX_SECURITYPRICES_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_TURNS_IMPORT_SOUTHAM",
+      "processingTemplate": "T_MX_TURNS_IMPORT_SOUTHAM",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_TURNS_IMPORT_SOUTHAM",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "R_MX_TURNS_IMPORT_SOUTHAM",
+          "predecessor": "R_MX_TURNS_IMPORT_SOUTHAM",
+          "processingStatus": "COMPLETED",
+          "processingType": "SERVICE",
+          "serverNodeType": "FILE_MANAGER"
+        }
+      ]
+    }
+  ]
+}

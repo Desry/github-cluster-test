@@ -1,0 +1,705 @@
+{
+  "description": "14000|Risk Reports SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "dependencies": 
+  [
+    {
+      "dependencyType": "WORKFLOW_ITEM",
+      "name": "W_MX_VAR_SA.T_MX_VAR_SA_TRAILER",
+      "processingStatus": "COMPLETED",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "timestampRelation": "EQ",
+      "timestampSelector": "SAME",
+      "workflowTemplate": "W_MX_VAR_SA",
+      "workflowTemplateItem": "T_MX_VAR_SA_TRAILER"
+    }
+  ],
+  "items": 
+  [
+    {
+      "name": "T_MX_RISKREPORT_SA_HEADER",
+      "priority": "0",
+      "processingTemplate": "T_MX_RISKREPORT_SA_HEADER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RISKREPORT_SA_HEADER",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_MR_SA_NG_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_NG_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_NG_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_HEADER",
+          "predecessor": "T_MX_RISKREPORT_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+      "priority": "0",
+      "processingTemplate": "T_MX_RISKREPORT_SA_SLEEP_4S",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RISKREPORT_SA_SLEEP_4S",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_HEADER",
+          "predecessor": "T_MX_RISKREPORT_SA_HEADER",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_REP_DATES_SA_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_REP_DATES_SA_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_REP_DATES_SA_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_1DVR_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_1DVR_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_1DVR_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_FD_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_FD_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_FD_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_IDBP_PS",
+      "processingTemplate": "T_MX_MR_SA_IDBP_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_IDBP_PS",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_IDCP_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_IDCP_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_IDCP_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_IDDCP_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_IDDCP_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_IDDCP_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_IDP_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_IDP_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_IDP_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_INFL_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_INFL_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_INFL_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_NF_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_NF_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_NF_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_RMH_CTPY_PS",
+      "processingTemplate": "T_MX_MR_SA_RMH_CTPY_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_RMH_CTPY_PS",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_RMH_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_RMH_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_RMH_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_S_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_S_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_S_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MR_SA_XCCYB_PS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MR_SA_XCCYB_PS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MR_SA_XCCYB_PS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "predecessor": "T_MX_RISKREPORT_SA_SLEEP_4S",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RISKREPORT_SA_CHECKPOINT",
+      "priority": "0",
+      "processingTemplate": "T_MX_RISKREPORT_SA_CHECKPOINT",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RISKREPORT_SA_CHECKPOINT",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_REP_DATES_SA_PS",
+          "predecessor": "T_MX_MR_REP_DATES_SA_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_1DVR_PS",
+          "predecessor": "T_MX_MR_SA_1DVR_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_FD_PS",
+          "predecessor": "T_MX_MR_SA_FD_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_IDBP_PS",
+          "predecessor": "T_MX_MR_SA_IDBP_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_IDCP_PS",
+          "predecessor": "T_MX_MR_SA_IDCP_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_IDDCP_PS",
+          "predecessor": "T_MX_MR_SA_IDDCP_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_IDP_PS",
+          "predecessor": "T_MX_MR_SA_IDP_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_INFL_PS",
+          "predecessor": "T_MX_MR_SA_INFL_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_NF_PS",
+          "predecessor": "T_MX_MR_SA_NF_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_NG_PS",
+          "predecessor": "T_MX_MR_SA_NG_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_RMH_CTPY_PS",
+          "predecessor": "T_MX_MR_SA_RMH_CTPY_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_RMH_PS",
+          "predecessor": "T_MX_MR_SA_RMH_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_S_PS",
+          "predecessor": "T_MX_MR_SA_S_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MR_SA_XCCYB_PS",
+          "predecessor": "T_MX_MR_SA_XCCYB_PS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PROCESSING_TEMPLATE",
+          "name": "W_MX_GENERIC_REPORT_SA",
+          "processingStatus": "COMPLETED",
+          "processingTemplate": "W_MX_GENERIC_REPORT_SA",
+          "processingType": "WORKFLOW",
+          "timestampRelation": "EQ",
+          "timestampSelector": "SAME",
+          "workflowType": "STANDARD"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MIS_MR_EXC_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MIS_MR_EXC_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MIS_MR_EXC_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_CHECKPOINT",
+          "predecessor": "T_MX_RISKREPORT_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MKTRISK_REPORTING_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MKTRISK_REPORTING_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MKTRISK_REPORTING_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MIS_MR_EXC_PS_SA",
+          "predecessor": "T_MX_MIS_MR_EXC_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MKTRISK_REPORTING_WAIT_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_MKTRISK_REPORTING_WAIT_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MKTRISK_REPORTING_WAIT_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MKTRISK_REPORTING_SA",
+          "predecessor": "T_MX_MKTRISK_REPORTING_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "WINDOWS",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MKTRISK_REPORTING_STATUS_SOUTH_AMERICAS",
+      "processingTemplate": "T_MX_MKTRISK_REPORTING_STATUS_SOUTH_AMERICAS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "POWERSHELL",
+      "title": "T_MX_MKTRISK_REPORTING_STATUS_SOUTH_AMERICAS",
+      "actions": 
+      [
+        {
+          "processingActionType": "FORCE_COMPLETED",
+          "processingEventCategory": "PROCESSING",
+          "processingEventType": "PROCESSING_FAILED",
+          "processingCommand": {
+            "abortChildren": false,
+            "actionTargetType": "SELF",
+            "forbidChildrenStart": false,
+            "forceChildren": false,
+            "keepForcedStatus": true,
+            "killChildren": false,
+            "operator": "",
+            "restartType": "RESTART_FROM_BEGINNING"
+          }
+        }
+      ],
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MKTRISK_REPORTING_WAIT_SA",
+          "predecessor": "T_MX_MKTRISK_REPORTING_WAIT_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_MKTRISK_REPORTING_CHECK_SOUTH_AMERICAS",
+      "priority": "0",
+      "processingTemplate": "T_MX_MKTRISK_REPORTING_CHECK_SOUTH_AMERICAS",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_MKTRISK_REPORTING_CHECK_SOUTH_AMERICAS",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MKTRISK_REPORTING_STATUS_SOUTH_AMERICAS",
+          "predecessor": "T_MX_MKTRISK_REPORTING_STATUS_SOUTH_AMERICAS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "WINDOWS",
+          "taskType": "POWERSHELL"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RISK_OVERFLOW_WARNING_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_RISK_OVERFLOW_WARNING_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RISK_OVERFLOW_WARNING_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_CHECKPOINT",
+          "predecessor": "T_MX_RISKREPORT_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_RISKREPORT_SA_TRAILER",
+      "priority": "0",
+      "processingTemplate": "T_MX_RISKREPORT_SA_TRAILER",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_RISKREPORT_SA_TRAILER",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_MKTRISK_REPORTING_CHECK_SOUTH_AMERICAS",
+          "predecessor": "T_MX_MKTRISK_REPORTING_CHECK_SOUTH_AMERICAS",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "WINDOWS",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISK_OVERFLOW_WARNING_SA",
+          "predecessor": "T_MX_RISK_OVERFLOW_WARNING_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_RISKREPORT_SA_CHECKPOINT",
+          "predecessor": "T_MX_RISKREPORT_SA_CHECKPOINT",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}

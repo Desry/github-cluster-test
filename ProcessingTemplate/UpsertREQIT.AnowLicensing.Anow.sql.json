@@ -1,0 +1,21 @@
+{
+  "endpoint": "DigiTrans.Gbl.ep",
+  "endpointType": "MYSQL",
+  "node": "AnowEngine.Mysql.apf",
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "TASK",
+  "serverNodeType": "MYSQL",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "taskType": "RDBMS_SQL_STATEMENT",
+  "processingCommand": {
+    "forEachCollectionType": "TEXT",
+    "onUnresolvedVariables": "FAIL",
+    "rowsVariableLevel": "SELF",
+    "statement": "INSERT INTO appdb.anow_licensing (date, uc_name, executions, env, domain) VALUES\n('${day}', '${uc_name}', ${executions}, 'Dev', 'Dev')\nON DUPLICATE KEY UPDATE\nexecutions = ${executions} + VALUES(executions)",
+    "statementType": "INSERT"
+  }
+}

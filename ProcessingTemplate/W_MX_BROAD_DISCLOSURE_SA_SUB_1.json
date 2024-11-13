@@ -1,0 +1,470 @@
+{
+  "description": "14000|Broad Disclosure reports SA",
+  "folder": "MX_EOD",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "EOD",
+    "SA",
+    "SUB"
+  ],
+  "workflowType": "STANDARD",
+  "customFieldValues": {
+  },
+  "items": 
+  [
+    {
+      "name": "T_MX_BD_CAL_FD_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_CAL_FD_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_CAL_FD_PS_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_CM_FUTCL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_CM_FUTCL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_CM_FUTCL_PS_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_FUT_CL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_FUT_CL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_FUT_CL_PS_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_MP_CLOSING_SHELL_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_MP_CLOSING_SHELL_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_MP_CLOSING_SHELL_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_MV_FAC_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_MV_FAC_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_MV_FAC_PS_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_PS1_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_PS1_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_PS1_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_PS2_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_PS2_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_PS2_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS1_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS1_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS1_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS2_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS2_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS2_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS3_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS3_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS3_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS4_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS4_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS4_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS5_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS5_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS5_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS6_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS6_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS6_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS7_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS7_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS7_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_BD_TRD_ST_PS8_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_BD_TRD_ST_PS8_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_BD_TRD_ST_PS8_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_MP_CLOSING_SHELL_SA",
+          "predecessor": "T_MX_BD_MP_CLOSING_SHELL_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_ED_STA_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_ED_STA_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_ED_STA_PS_SA",
+      "weight": "1"
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_CAL_FD_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_CAL_FD_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_CAL_FD_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_CAL_FD_PS_SA",
+          "predecessor": "T_MX_BD_CAL_FD_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_CM_FUTCL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_CM_FUTCL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_CM_FUTCL_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_CM_FUTCL_PS_SA",
+          "predecessor": "T_MX_BD_CM_FUTCL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_FUT_CL_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_FUT_CL_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_FUT_CL_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_FUT_CL_PS_SA",
+          "predecessor": "T_MX_BD_FUT_CL_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_MV_FAC_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_MV_FAC_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_MV_FAC_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_MV_FAC_PS_SA",
+          "predecessor": "T_MX_BD_MV_FAC_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_TRD_PS1_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_TRD_PS1_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_TRD_PS1_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_PS1_SA",
+          "predecessor": "T_MX_BD_TRD_PS1_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_TRD_PS2_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_TRD_PS2_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_TRD_PS2_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_PS2_SA",
+          "predecessor": "T_MX_BD_TRD_PS2_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_TRD_PS3_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_TRD_PS3_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_TRD_PS3_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS1_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS1_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS2_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS2_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS3_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS3_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS4_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS4_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS5_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS5_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS6_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS6_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        },
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS7_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS7_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_BD_TRD_ST_PS8_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_BD_TRD_ST_PS8_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_BD_TRD_ST_PS8_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_BD_TRD_ST_PS8_SA",
+          "predecessor": "T_MX_BD_TRD_ST_PS8_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_GATHER_STATS_ED_STA_PS_SA",
+      "priority": "0",
+      "processingTemplate": "T_MX_GATHER_STATS_ED_STA_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_ED_STA_PS_SA",
+      "weight": "1",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_ED_STA_PS_SA",
+          "predecessor": "T_MX_ED_STA_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    },
+    {
+      "name": "T_MX_SEC_UDF_PS_SA",
+      "processingTemplate": "T_MX_SEC_UDF_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_SEC_UDF_PS_SA"
+    },
+    {
+      "name": "T_MX_GATHER_STATS_SEC_UDF_PS_SA",
+      "processingTemplate": "T_MX_GATHER_STATS_SEC_UDF_PS_SA",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "SH",
+      "title": "T_MX_GATHER_STATS_SEC_UDF_PS_SA",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "T_MX_SEC_UDF_PS_SA",
+          "predecessor": "T_MX_SEC_UDF_PS_SA",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "SH"
+        }
+      ]
+    }
+  ]
+}
